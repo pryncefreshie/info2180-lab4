@@ -26,12 +26,12 @@ function main(){
 	}
 
 	//Exercise 3
-	var end = document.getElementById("end");
+	/*var end = document.getElementById("end");
 	end.addEventListener("mouseover", function(){
 		if (document.getElementsByClassName("boundary youlose").length == 0){
 			alert("You Win!!");
 		}
-	});
+	});*/
 
 	//Exercise 4
 	var start = document.getElementById("start");
