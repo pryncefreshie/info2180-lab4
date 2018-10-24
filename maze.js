@@ -25,4 +25,10 @@ window.onload = function(){
 			changeBounds();
 		};
 	}
+	maze.onmouseleave = function(){
+ +			for (var i = 0; i< otherBoundaries.length-1; i++) {
+ +				otherBoundaries[i].classList.add("youlose");
+ +			}
+ +		};
+ 
 };
