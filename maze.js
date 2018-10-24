@@ -1,5 +1,6 @@
+window.onload = main;
 
-function window.onload(){
+function main(){
 	
 	//Exercise 1
 	let wall = document.getElementById("boundary1");
@@ -14,23 +15,23 @@ function window.onload(){
 			flag = i;
 		}else{
 			boundaries[i].addEventListener("mouseover", function(){
-			document.getElementById("status").textContent = "You lose!"
-			for(var i = 0; i < boundaries.length; i++){
-				if(i != flag){
-					boundaries[i].className = "boundary youlose";
+				document.getElementById("status").textContent = "You lose!"
+				for(var i = 0; i < boundaries.length; i++){
+					if(i != flag){
+						boundaries[i].className = "boundary youlose";
+					}
 				}
-			}
 			});
 		}
 	}
 
 	//Exercise 3
-/*	var end = document.getElementById("end");
+	var end = document.getElementById("end");
 	end.addEventListener("mouseover", function(){
 		if (document.getElementsByClassName("boundary youlose").length == 0){
 			alert("You Win!!");
 		}
-	});*/
+	});
 
 	//Exercise 4
 	var start = document.getElementById("start");
@@ -78,4 +79,5 @@ function window.onload(){
 			}
 		});
 	});
+	
 }
