@@ -1,47 +1,81 @@
-var boundry;
 
-var end;
-
-window.onload = function(){
+function window.onload(){
 	
 	//Exercise 1
-	var maze = document.getElementById("maze");
-	var boundaries = document.querySelectorAll(".boundary");
+	let wall = document.getElementById("boundary1");
+	wall.addEventListener("mouseover", function(){ this.className = "boundary youlose";});
+
 	//Exercise 2
- +	var status = document.querySelector("#status");
-	var changeBounds = function(){
+	let boundaries = document.querySelectorAll(".boundary");
+	let flag = -1;
 
-		for(var i = 0; i < boundaries.length;i++){
-			if(boundaries[i].className = "boundary"){
-				boundaries[i].className += "youlose";
+	for(var i = 0; i < boundaries.length;i++){
+		if(boundaries[i].className.indexOf("example") != -1){
+			flag = i;
+		}else{
+			boundaries[i].addEventListener("mouseover", function(){
+			document.getElementById("status").textContent = "You lose!"
+			for(var i = 0; i < boundaries.length; i++){
+				if(i != flag){
+					boundaries[i].className = "boundary youlose";
+				}
 			}
-			status.innerHTML = "You Lose!";
-			}
-		};
-	}
-	//Exercise 6
-	for(var i=0; i < boundaries.length;i++){
-		boundaries[i].onmouseover = function(){
-			changeBounds();
-		};
-	}
-	maze.onmouseleave = function(){
- +			for (var i = 0; i< otherBoundaries.length-1; i++) {
- +				otherBoundaries[i].classList.add("youlose");
- +			}
- +		};
- 
-
- 	var start = document.querySelector("#start");
-
-	var restart = function(){
-		for( var i = 0; i < boundaries.length; i++){
-			boundaries[i].className = "boundary";
+			});
 		}
-	};
+	}
 
-	start.onclick = function(){
-		restart();
-	};
+	//Exercise 3
+/*	var end = document.getElementById("end");
+	end.addEventListener("mouseover", function(){
+		if (document.getElementsByClassName("boundary youlose").length == 0){
+			alert("You Win!!");
+		}
+	});*/
 
-};
+	//Exercise 4
+	var start = document.getElementById("start");
+	var status = document.getElementById("status");
+
+	start.addEventListener("click", function(){
+		var walls = document.querySelectorAll(".boundary");
+		if (walls.length != 0){
+			for(var i = 0; i < walls.length; i++){
+				if(walls[i].className == "boundary example"){
+					continue;
+				}
+				walls[i].className = "boundary";
+			}
+
+			status.textContent = "Move your mouse over the \"S\" to begin.";
+		}
+	});
+
+	//Exercise 5
+	var end = document.getElementById("end");
+	var status = document.getElementById("status");
+
+	end.addEventListener("mouseover", function(){
+		if(document.querySelectorAll(".youlose").length == 0){
+			status.textContent = "You win!";
+		}else{
+			status.textContent = "You Lose!";
+		}
+	});
+
+	//Exercise 6
+	let cheatCheck = document.getElementById("start");
+	let maze = document.getElementById("maze");
+
+	cheatCheck.addEventListener("mouseout", function(){
+		maze.addEventListener("mouseleave", function(){
+			for(var i = 0; i < boundaries.length; i++){
+				document.getElementById("status").textContent = "You lose!"
+				for(var i = 0; i < boundaries.length; i++){
+					if( boundaries[i].className.indexOf("example") == -1){
+						boundaries[i].className = "boundary youlose";
+					}
+				}
+			}
+		});
+	});
+}
