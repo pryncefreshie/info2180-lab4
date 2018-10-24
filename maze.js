@@ -31,4 +31,17 @@ window.onload = function(){
  +			}
  +		};
  
+
+ 	var start = document.querySelector("#start");
+
+	var restart = function(){
+		for( var i = 0; i < boundaries.length; i++){
+			boundaries[i].className = "boundary";
+		}
+	};
+
+	start.onclick = function(){
+		restart();
+	};
+
 };
